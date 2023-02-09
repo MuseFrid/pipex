@@ -6,11 +6,11 @@
 /*   By: gduchesn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:14:55 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/07 13:39:15 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:15:42 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*set_stash(char *buf, char (*stash)[BUFFER_SIZE + 1], int *ret)
 {

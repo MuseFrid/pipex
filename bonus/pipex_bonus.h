@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:17:58 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 18:39:43 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:17:51 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <sys/errno.h>
 # include <fcntl.h>
-# include "get_next_line/get_next_line.h"
+# include "get_next_line/get_next_line_bonus.h"
 
 char	**ft_split(char const *s, char c);
 char	*parse(char **envp, const char *cmd);

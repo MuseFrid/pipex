@@ -6,11 +6,11 @@
 /*   By: gduchesn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 18:37:49 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/07 13:41:09 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:15:52 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_strjoin(char const *s1, char const *s2)
 {
