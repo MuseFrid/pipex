@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:48:44 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 21:48:46 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:59:39 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	here_doc(char *limiter)
 	char	*str;
 
 	if (pipe(fd) == -1)
-	{
-		perror(NULL);
-		exit(1);
-	}
+		error_exit();
 	while (1)
 	{
 		str = get_next_line(0);

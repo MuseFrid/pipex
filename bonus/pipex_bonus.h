@@ -6,19 +6,19 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:17:58 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 22:17:51 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:59:17 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/errno.h>
 # include <fcntl.h>
 # include "get_next_line/get_next_line_bonus.h"
 
+void	error_exit(void);
 char	**ft_split(char const *s, char c);
 char	*parse(char **envp, const char *cmd);
 char	*free_access(char **tab, char *cmd);
