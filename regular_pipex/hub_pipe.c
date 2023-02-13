@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:31:58 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 19:52:35 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:24:43 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,18 @@ void	create_file(int fd_pipe[2], int fd, char *argv)
 	fd_pipe[0] = -2;
 }
 
+static void	outfile_to_fd_pipe(int outfile_fd[2], int (*fd_pipe)[2])
+{
+	(*fd_pipe)[0] = outfile_fd[0];
+	(*fd_pipe)[1] = outfile_fd[1];
+}
+
 int	hub_pipe(int argc, char **argv, char **envp)
 {
 	int	fd;
 	int	i;
 	int	fd_pipe[2];
+	int	outfile_fd[2];
 
 	i = 2;
 	fd = open(argv[i - 1], O_RDONLY);
@@ -83,11 +90,12 @@ int	hub_pipe(int argc, char **argv, char **envp)
 		perror(NULL);
 		exit(3);
 	}
+	create_file(outfile_fd, fd, argv[argc - 1]);
 	fd_pipe[0] = 0;
 	while (fd_pipe[0] != -2)
 	{
 		if (i == argc - 2)
-			create_file(fd_pipe, fd, argv[i + 1]);
+			outfile_to_fd_pipe(outfile_fd, &fd_pipe);
 		else if (pipe(fd_pipe) == -1)
 			return (process_error(fd, -1, NULL));
 		fd = process(argv[i++], envp, fd, fd_pipe);

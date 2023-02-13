@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:48:44 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/10 18:59:39 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:41:27 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ int	here_doc(char *limiter)
 	close(fd[1]);
 	free(str);
 	return (fd[0]);
+}
+
+void	error_exit(void)
+{
+	perror(NULL);
+	exit(3);
 }

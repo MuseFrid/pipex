@@ -6,7 +6,7 @@
 #    By: gduchesn <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:13:01 by gduchesn          #+#    #+#              #
-#    Updated: 2023/02/09 22:17:12 by gduchesn         ###   ########.fr        #
+#    Updated: 2023/02/13 11:45:52 by gduchesn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = pipex
 
 NAME_BONUS = pipex_bonus
 
-SRC =		new_pipex/main.c \
-			new_pipex/ft_split.c \
-			new_pipex/hub_pipe.c \
-			new_pipex/access.c \
-			new_pipex/pipex_utils.c
+SRC =		regular_pipex/main.c \
+			regular_pipex/ft_split.c \
+			regular_pipex/hub_pipe.c \
+			regular_pipex/access.c \
+			regular_pipex/pipex_utils.c
 
 BN =		bonus/access_bonus.c \
 			bonus/ft_split_bonus.c \
@@ -43,7 +43,7 @@ all: 	$(NAME)
 bonus:	$(NAME_BONUS)
 
 $(NAME_BONUS):	$(OBJB)
-				gcc -Wall -Wextra -Werror -o $(NAME) $(OBJB)
+				gcc -g -Wall -Wextra -Werror -o $(NAME) $(OBJB)
 
 $(NAME):	$(OBJ)
 				gcc -g -Wall -Wextra -Werror -o $(NAME) $(OBJ)
