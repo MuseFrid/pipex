@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:49:57 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 21:49:58 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:34:35 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv, char **envp)
 			return (r);
 		return (0);
 	}
-	return (write(2, "Something wrong with arg !\n", 27));
+	write(2, "Something wrong with arg !\n", 27);
+	return (1);
 }

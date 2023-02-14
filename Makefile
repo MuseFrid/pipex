@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: gduchesn <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/04 15:13:01 by gduchesn          #+#    #+#              #
-#    Updated: 2023/02/13 11:45:52 by gduchesn         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = pipex
 
 NAME_BONUS = pipex_bonus
@@ -35,15 +23,12 @@ OBJB = ${BN:.c=.o}
 
 REMOVE = rm -f
 
-.c.o:
-		gcc -g -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
-
 all: 	$(NAME)
 
 bonus:	$(NAME_BONUS)
 
 $(NAME_BONUS):	$(OBJB)
-				gcc -g -Wall -Wextra -Werror -o $(NAME) $(OBJB)
+				gcc -g -Wall -Wextra -Werror -o $(NAME_BONUS) $(OBJB)
 
 $(NAME):	$(OBJ)
 				gcc -g -Wall -Wextra -Werror -o $(NAME) $(OBJ)
@@ -52,6 +37,6 @@ clean:
 	$(REMOVE) $(OBJ) $(OBJB)
 
 fclean:	clean
-	$(REMOVE) $(NAME)
+	$(REMOVE) $(NAME) $(NAME_BONUS)
 
 re:	fclean all

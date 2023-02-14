@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:48:44 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/13 11:41:27 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:31:48 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	here_doc(char *limiter)
 			perror("");
 			exit(2);
 		}
-		if (ft_strncmp(limiter, str, ft_strlen(str) - 1) == 0)
-			break ;
+		if (ft_strlen(str) - 1 == ft_strlen(limiter))
+			if (ft_strncmp(limiter, str, ft_strlen(str) - 1) == 0)
+				break ;
 		write(fd[1], str, ft_strlen(str));
 		free(str);
 	}

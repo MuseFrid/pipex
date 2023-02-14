@@ -6,7 +6,7 @@
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:31:58 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/13 11:24:43 by gduchesn         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:57:03 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	process(char *argv, char **envp, int fd_in, int fd[2])
 
 	if (fork() == 0)
 	{
-		close(fd[0]);
+		if (fd[0] != -2)
+			close(fd[0]);
 		if (dup2(fd_in, 0) == -1 || dup2(fd[1], 1) == -1)
 			return (process_error(fd_in, fd[1], NULL));
 		cmd = ft_split(argv, ' ');
@@ -70,32 +71,24 @@ void	create_file(int fd_pipe[2], int fd, char *argv)
 	fd_pipe[0] = -2;
 }
 
-static void	outfile_to_fd_pipe(int outfile_fd[2], int (*fd_pipe)[2])
-{
-	(*fd_pipe)[0] = outfile_fd[0];
-	(*fd_pipe)[1] = outfile_fd[1];
-}
-
 int	hub_pipe(int argc, char **argv, char **envp)
 {
 	int	fd;
 	int	i;
 	int	fd_pipe[2];
-	int	outfile_fd[2];
 
 	i = 2;
 	fd = open(argv[i - 1], O_RDONLY);
 	if (fd == -1)
 	{
 		perror(NULL);
-		exit(3);
+		exit(1);
 	}
-	create_file(outfile_fd, fd, argv[argc - 1]);
 	fd_pipe[0] = 0;
 	while (fd_pipe[0] != -2)
 	{
 		if (i == argc - 2)
-			outfile_to_fd_pipe(outfile_fd, &fd_pipe);
+			create_file(fd_pipe, fd, argv[argc - 1]);
 		else if (pipe(fd_pipe) == -1)
 			return (process_error(fd, -1, NULL));
 		fd = process(argv[i++], envp, fd, fd_pipe);
