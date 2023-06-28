@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduchesn <gduchesn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 19:51:48 by gduchesn          #+#    #+#             */
-/*   Updated: 2023/02/09 19:52:15 by gduchesn         ###   ########.fr       */
+/*   Created: 2023/06/28 15:34:51 by gduchesn          #+#    #+#             */
+/*   Updated: 2023/06/28 15:34:52 by gduchesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	*free_access(char **tab, char *cmd)
 			free(tab[i++]);
 		free(tab);
 	}
-	if (cmd)
-		free(cmd);
+	free(cmd);
 	return (NULL);
 }
 
@@ -63,6 +62,26 @@ static char	*parse_extention(char **new_cmd, char **which_path, const char *cmd)
 	return (*new_cmd);
 }
 
+static int absolute_path(int *i, const char *cmd, char **str)
+{
+	*i = 0;
+
+	*str = NULL;
+	while (cmd[*i])
+	{
+		if (cmd[*i] == '/')
+		{
+			if (access(cmd, F_OK | X_OK) == 0)
+				*str = (char *)cmd;
+			*i = 0;
+			return (1);
+		}
+		(*i)++;
+	}
+	*i = 0;
+	return (0);
+}
+
 char	*parse(char **envp, const char *cmd)
 {
 	int		i;
@@ -70,16 +89,16 @@ char	*parse(char **envp, const char *cmd)
 	char	*new_cmd;
 	char	*save;
 
-	i = 0;
-	new_cmd = NULL;
+	if (absolute_path(&i, cmd, &new_cmd))
+		return (new_cmd);
 	while (ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	which_path = ft_split(envp[i], ':');
 	if (!which_path)
 		return (NULL);
-	i = -1;
 	if (parse_extention(&new_cmd, which_path, cmd) == NULL)
 		return (NULL);
+	i = -1;
 	while (which_path[++i])
 	{
 		save = ft_strjoin(which_path[i], new_cmd);
